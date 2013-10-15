@@ -68,6 +68,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
+    private static final String KEY_FADE_ANIMATION = "fade_animation";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -76,6 +77,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mAccelerometer;
     private WarnedListPreference mFontSizePref;
     private PreferenceScreen mNotificationPulse;
+    private CheckBoxPreference mFadeAnimation;
     private PreferenceScreen mBatteryPulse;
 
     private final Configuration mCurConfig = new Configuration();
@@ -110,6 +112,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             // Display settings.  However, is still available in Accessibility settings.
             getPreferenceScreen().removePreference(mAccelerometer);
         }
+
+        mFadeAnimation = (CheckBoxPreference) findPreference(KEY_FADE_ANIMATION);
+        mFadeAnimation.setChecked(Settings.System.getBoolean(
+                    getActivity().getContentResolver(), Settings.System.FADE_ANIMATION, false));
+
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
         if (mScreenSaverPreference != null
@@ -369,6 +376,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (preference == mAccelerometer) {
             RotationPolicy.setRotationLockForAccessibility(
                     getActivity(), !mAccelerometer.isChecked());
+        } else if (preference == mFadeAnimation){
+            Settings.System.putBoolean(getActivity().getContentResolver(),
+                    Settings.System.FADE_ANIMATION, mFadeAnimation.isChecked());
         } else if (preference == mAdaptiveBacklight) {
             return AdaptiveBacklight.setEnabled(mAdaptiveBacklight.isChecked());
         }

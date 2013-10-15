@@ -46,7 +46,7 @@
 
     <!-- Notification light dialogs -->
     <string name="edit_light_settings">Edit light settings</string>
-    <string name="pulse_speed_title">Pulse length and speed</string>
+    <string name="pulse_speed_title">Pulse length and speed</string> 
     <string name="picker_arrow" translatable="false">→</string>
     <string name="default_time">Normal</string>
     <string name="custom_time">Custom</string>
@@ -575,4 +575,9 @@
     <!-- Swap volume buttons when the screen is rotated -->
     <string name="swap_volume_buttons_title">Reorient volume buttons</string>
     <string name="swap_volume_buttons_summary">Swap volume buttons when the screen is rotated</string>
+
+    <!-- Fade Animation -->
+    <string name="fade_animation">Fade Animation</string>
+    <string name="fade_animation_summary">Use Fade Animation instead of electron beam</string>
+
 </resources>
