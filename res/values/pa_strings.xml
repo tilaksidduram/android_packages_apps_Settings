@@ -582,6 +582,11 @@
     
     <!-- Battery around lockscreen ring -->
     <string name="battery_around_lockscreen_ring">Lock Ring Battery Level</string>
-    <string name="battery_around_lockscreen_ring_summary">Battery Level is displayed around Lockscreen Ring</string>	
+    <string name="battery_around_lockscreen_ring_summary">Battery Level is displayed around Lockscreen Ring</string>
+
+    <!-- Lockscreen Lid Settings -->
+    <string name="smart_cover_category_title">Smart cover</string>
+    <string name="smart_cover_wake_title">Smart cover wake</string>
+    <string name="smart_cover_wake_summary">Wakeup device when smart cover opens</string>	
 
 </resources>
