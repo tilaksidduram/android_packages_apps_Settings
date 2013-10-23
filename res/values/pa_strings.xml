@@ -182,6 +182,10 @@
     <string name="halo_msgbox_animation_none">None</string>
     <string name="halo_msgbox_animation_flip">Flip</string>
 
+    <string name="halo_colors">Enable Custom Colors</string>
+    <string name="halo_circle_color">Change Circle Color</string> 
+    <string name="halo_effect_color">Change Effect Color</string>
+
     <!-- Quick pulldown -->
     <string name="quick_pulldown_title">Quick pulldown</string>
     <string name="quick_pulldown_summary">Edge of status bar will pull down Quick Settings</string>
