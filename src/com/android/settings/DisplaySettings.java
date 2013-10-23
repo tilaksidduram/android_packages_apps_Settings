@@ -416,8 +416,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 	} else if (preference == mSmartCoverWake) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_LID_WAKE, (Boolean) objValue ? 1 : 0);
-            return true;
 	}
+        return true;
     }
 
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
