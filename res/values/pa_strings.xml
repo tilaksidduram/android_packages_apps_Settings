@@ -594,7 +594,7 @@
     <string name="smart_cover_category_title">Smart cover</string>
     <string name="smart_cover_wake_title">Smart cover wake</string>
     <string name="smart_cover_wake_summary">Wakeup device when smart cover opens</string>
-
+    
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color picker</string>
     <string name="press_color_to_apply">Tap on color to apply</string>
@@ -604,6 +604,6 @@
     <string name="ics_color" translatable="false">!!!</string>
     <string name="set">Set</string>
     <string name="hex">Hex:</string>
-    <string name="color_default">Default</string>	
+    <string name="color_default">Default</string>
 
 </resources>
