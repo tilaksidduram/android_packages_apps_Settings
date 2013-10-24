@@ -52,6 +52,8 @@ public class Halo extends SettingsPreferenceFragment
     private static final String KEY_HALO_EFFECT_COLOR = "halo_effect_color";
     private static final String KEY_HALO_NOTIF_TITLE_COLOR = "halo_notif_title_color";
     private static final String KEY_HALO_NOTIF_DESC_COLOR = "halo_notif_desc_color";
+    private static final String KEY_HALO_SPEECH_BUBBLE_COLOR = "halo_speech_bubble_color";
+    private static final String KEY_HALO_TEXT_COLOR = "halo_text_color";
 
     private ListPreference mHaloState;
     private ListPreference mHaloSize;
@@ -70,6 +72,8 @@ public class Halo extends SettingsPreferenceFragment
     private ColorPickerPreference mHaloEffectColor;
     private ColorPickerPreference mHaloNotifTitleColor;
     private ColorPickerPreference mHaloNotifDescColor;
+    private ColorPickerPreference mHaloSpeechBubbleColor;
+    private ColorPickerPreference mHaloTextColor;
 
     private Context mContext;
     private INotificationManager mNotificationManager;
@@ -179,10 +183,29 @@ public class Halo extends SettingsPreferenceFragment
         color = Settings.System.getInt(mContext.getContentResolver(), 
             Settings.System.HALO_NOTIFICATION_DESC_COLOR, 0xff999999);
         hex = ColorPickerPreference.convertToARGB(color);
-      mHaloNotifDescColor.setSummary(hex);
-      mHaloNotifDescColor.setNewPreviewColor(color);
-      mHaloNotifDescColor.setEnabled(mHaloColors.isChecked());
-    }
+
+       	mHaloNotifDescColor.setSummary(hex);
+    	mHaloNotifDescColor.setNewPreviewColor(color);
+    	mHaloNotifDescColor.setEnabled(mHaloColors.isChecked());
+    	
+        mHaloSpeechBubbleColor = (ColorPickerPreference) prefSet.findPreference(KEY_HALO_SPEECH_BUBBLE_COLOR);
+          mHaloSpeechBubbleColor.setOnPreferenceChangeListener(this);
+          color = Settings.System.getInt(mContext.getContentResolver(), 
+            Settings.System.HALO_SPEECH_BUBBLE_COLOR, 0xff086a99);
+          hex = ColorPickerPreference.convertToARGB(color);
+        mHaloSpeechBubbleColor.setSummary(hex);
+        mHaloSpeechBubbleColor.setNewPreviewColor(color);
+        mHaloSpeechBubbleColor.setEnabled(mHaloColors.isChecked());
+      
+        mHaloTextColor = (ColorPickerPreference) prefSet.findPreference(KEY_HALO_TEXT_COLOR);
+          mHaloTextColor.setOnPreferenceChangeListener(this);
+          color = Settings.System.getInt(mContext.getContentResolver(), 
+            Settings.System.HALO_TEXT_COLOR, 0xffffffff);
+          hex = ColorPickerPreference.convertToARGB(color);
+        mHaloTextColor.setSummary(hex);
+        mHaloTextColor.setNewPreviewColor(color);
+        mHaloTextColor.setEnabled(mHaloColors.isChecked());
+      }
 
     private boolean isHaloPolicyBlack() {
         try {
@@ -219,13 +242,15 @@ public class Halo extends SettingsPreferenceFragment
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_PAUSE, mHaloPause.isChecked()
                     ? 1 : 0);
-	} else if (preference == mHaloColors) {
-          Settings.System.putInt(mContext.getContentResolver(),
-              Settings.System.HALO_COLOR, mHaloColors.isChecked() ? 1 : 0);
-          mHaloCircleColor.setEnabled(mHaloColors.isChecked());
-          mHaloEffectColor.setEnabled(mHaloColors.isChecked());
-	  mHaloNotifTitleColor.setEnabled(mHaloColors.isChecked());
-          mHaloNotifDescColor.setEnabled(mHaloColors.isChecked());
+        } else if (preference == mHaloColors) {
+        	Settings.System.putInt(mContext.getContentResolver(),
+        			Settings.System.HALO_COLOR, mHaloColors.isChecked() ? 1 : 0);
+        	mHaloCircleColor.setEnabled(mHaloColors.isChecked());
+        	mHaloEffectColor.setEnabled(mHaloColors.isChecked());
+        	mHaloNotifTitleColor.setEnabled(mHaloColors.isChecked());
+        	mHaloNotifDescColor.setEnabled(mHaloColors.isChecked());
+        	mHaloSpeechBubbleColor.setEnabled(mHaloColors.isChecked());
+        	mHaloTextColor.setEnabled(mHaloColors.isChecked());
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -273,11 +298,23 @@ public class Halo extends SettingsPreferenceFragment
           Settings.System.putInt(getActivity().getContentResolver(),
               Settings.System.HALO_NOTIFICATION_TITLE_COLOR, ColorPickerPreference.convertToColorInt(hex));
         } else if (preference == mHaloNotifDescColor) {
-          String hex = ColorPickerPreference.convertToARGB(
-              Integer.valueOf(String.valueOf(newValue)));
-          preference.setSummary(hex);
-          Settings.System.putInt(getActivity().getContentResolver(),
-              Settings.System.HALO_NOTIFICATION_DESC_COLOR, ColorPickerPreference.convertToColorInt(hex));
+        	String hex = ColorPickerPreference.convertToARGB(
+        			Integer.valueOf(String.valueOf(newValue)));
+        	preference.setSummary(hex);
+        	Settings.System.putInt(getActivity().getContentResolver(),
+        	    Settings.System.HALO_NOTIFICATION_DESC_COLOR, ColorPickerPreference.convertToColorInt(hex));
+        } else if (preference == mHaloSpeechBubbleColor) {
+        	String hex = ColorPickerPreference.convertToARGB(
+        	   Integer.valueOf(String.valueOf(newValue)));
+        	preference.setSummary(hex);
+        	Settings.System.putInt(getActivity().getContentResolver(),
+        	   Settings.System.HALO_SPEECH_BUBBLE_COLOR, ColorPickerPreference.convertToColorInt(hex));
+        } else if (preference == mHaloTextColor) {
+        	String hex = ColorPickerPreference.convertToARGB(
+        	   Integer.valueOf(String.valueOf(newValue)));
+        	preference.setSummary(hex);
+        	Settings.System.putInt(getActivity().getContentResolver(),
+        	   Settings.System.HALO_TEXT_COLOR, ColorPickerPreference.convertToColorInt(hex));
         }
         return false;
     }
