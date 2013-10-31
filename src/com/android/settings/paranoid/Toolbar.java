@@ -159,9 +159,8 @@ public class Toolbar extends SettingsPreferenceFragment
                     Settings.System.STATUS_BAR_NOTIF_COUNT, mStatusBarNotifCount.isChecked()
                     ? 1 : 0);
 	} else if (preference == mStatusBarQuickPeek) {
-            value = mStatusBarQuickPeek.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.STATUSBAR_PEEK, value ? 1 : 0);
+                    Settings.System.STATUSBAR_PEEK, mStatusBarQuickPeek.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mMenuButtonShow) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
